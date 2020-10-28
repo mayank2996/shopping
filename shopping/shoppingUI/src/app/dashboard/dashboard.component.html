@@ -1,0 +1,110 @@
+<mat-toolbar class="sec-bg" >
+  
+  <a class=" text-warning"  (click)="onClick('All')" >All</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class=" text-warning"  (click)="onClick('Electronics')" >Electronics</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a  class=" text-warning" (click)="onClick('Shoes')">Shoes</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <a  (click)="onClick('Furniture')" class="text-warning" >Furniture</a>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <a  (click)="onClick('Clothing')" class="text-warning" >Clothing</a>
+   <form #search="ngForm" (ngSubmit)="onSearch()" class="ml-auto" >
+   <input type="text" name="search" autocomplete="off" (input)="onSearch()" placeholder="Search For a Product" [(ngModel)]="searchElement" class="search ml-auto ">
+  
+   &nbsp;&nbsp;
+   
+   <button mat-raised-button class="btn btn-warning text-light" > Search <mat-icon>search</mat-icon></button>
+  </form>
+</mat-toolbar>
+  
+  
+ <span *ngIf="loader">
+  <div class="row" class="loader">
+    
+    <div class="col-md-4 offset-5">
+      <mat-spinner diameter="60"></mat-spinner>
+    </div>
+  </div> 
+
+   
+    </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 *ngIf="noMatch" class="text-secondary">No Product found</h1>
+
+<h1 *ngIf="productArr.length!=0&& valid&& value!='All'"><div class="text-secondary">Search for {{value}}</div></h1>
+<div class="row  " *ngIf="productArr.length!=0" >
+    <div class="col-md-4" *ngFor="let product of productArr" >
+        <mat-card class="card1" >
+          <a (click)="onProductClick(product.id)">
+                <img mat-card-image [src]="'../../assets/images/'+product.image" >
+          </a>
+            <mat-card-content class="contentcard">
+              <div class="text-primary">
+                <a (click)="onProductClick(product.id)">
+                <h5>
+                  {{product.pName}} 
+                 
+                </h5>
+                </a></div>
+                <div >
+                  <h5>
+                   <span class="text-secondary">
+                     {{product.pSeller.sId}}
+                    </span> 
+                    <span class="text-warning">
+                      Rating
+                    </span>
+                 <span class="badge text-light badge-pill bg-warning text-center" > 
+                
+                    <span class="rating">{{product.pRating}}</span>
+                   
+                   
+
+                 
+                  <mat-icon class="rating">star</mat-icon>
+                </span>
+                </h5>
+                  
+                </div>
+                <p>{{product.pDescription}}</p>
+            </mat-card-content>
+            <mat-card-actions >
+              
+              <span>&nbsp; {{(product.price*(1-product.pSeller.pDiscount))|currency:"INR":"symbol":"3.1-2"}}</span>
+              
+                &nbsp;&nbsp;&nbsp;
+                <s>{{product.price|currency:"INR":"symbol":"3.1-2"}}</s>
+                &nbsp;&nbsp;&nbsp;
+                <span class="text-warning">{{product.pSeller.pDiscount|percent}} OFF</span>
+                <br>
+               <div class="form-inline">
+                <div ><button mat-raised-button class="btn-danger" (click)="onWishlist(product)" >Wishlist <mat-icon class="rt">add_shopping_cart</mat-icon></button></div>
+                &nbsp;&nbsp;
+                <div ><button mat-raised-button color="primary" (click)="onBuy(product.id)" *ngIf="product.pSeller.pQuantity!=0;else notify;">Buy Now <mat-icon class="rt">add_shopping_cart</mat-icon></button></div>
+
+               </div>
+               <ng-template #notify> 
+                <div ><button mat-raised-button class="btn-info " (click)="onNotify()">Notify me</button></div>
+                
+               </ng-template> 
+          </mat-card-actions>
+            
+        </mat-card>
+    </div> 
+  </div> 
+
+        <!-- <router-outlet></router-outlet> -->

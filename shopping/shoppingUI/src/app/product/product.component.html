@@ -1,0 +1,37 @@
+ 
+ <span *ngIf="loader">
+    <div class="row" class="loader">
+      
+      <div class="col-md-4 offset-5">
+        <mat-spinner diameter="60"></mat-spinner>
+      </div>
+    </div> 
+    </span>
+
+<div class="row " *ngIf="!loader"  >
+    <div class="col-md-4 offset-2 imgstyle " *ngIf="product" >
+        <img mat-card-image [src]="'../../assets/images/'+product.image" height="470px" width="300px" >
+    </div>
+    
+    <div class="col-md-5 imgstyle" *ngIf="product.pSeller">
+        <div><h3>{{product.pName}}</h3></div>
+        <div  *ngIf="product.pSeller"><h4>By Seller {{product.pSeller.sId}}</h4></div>
+        <div class="productstyle"><strong>Description:</strong> </div>
+        <div>{{product.pDescription}}</div>
+        <div class="productstyle"><strong>Specification:</strong> </div>
+        <div  *ngIf="product"><b>color:</b>{{product.color}}</div>
+        <div class="imgstyle" *ngIf="product.pSeller"><h3>Price:{{(product.price*(1-product.pSeller.pDiscount))|currency:"INR":"symbol":"3.1-2"}}</h3></div>
+        <div><s>{{product.price|currency:"INR":"symbol":"3.1-2"}}</s></div>
+        <div><h3  *ngIf="product.pSeller"><span class="text-warning"  *ngIf="product">{{product.pSeller.pDiscount|percent}} OFF </span>+ {{product.pSeller.pShippingCharges}} shipping Charges</h3></div>
+        <div><h4>Quantity Left: {{quantity}} </h4></div>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="onBuy()" *ngIf="product.pSeller.pQuantity!=0;else notify;">Buy Now</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <ng-template #notify> 
+                <button mat-raised-button class="notify" (click)="onNotify()">Notify me</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+               </ng-template> 
+            <button mat-raised-button color="yellow" onclick="window.history.go(-1)">Go Back</button>
+        </mat-card-actions>
+    </div>
+    </div>
+

@@ -1,0 +1,117 @@
+<div class="bg">
+    <div class="row " *ngIf="username">
+        <div class="col-md-2 offset-1 orderstyle">
+            <h1 class="text-secondary">My Order</h1>
+        </div>
+
+        <div class="col-md-10 offset-1" *ngFor="let user of userOrder; let i=index;">
+            <div *ngIf="length>1; else noOrder;">
+                <mat-card class="orderstyle" *ngIf="i!=0">
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-md-2 ">
+
+                                <h4>
+                                    OrderId
+                                </h4>
+                            </div>
+                            <div class="col-md-2 offset-8">
+                                <h4>
+                                    product Id
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 ">
+
+                                <h4>
+                                    {{user.orderId}}
+                                </h4>
+                            </div>
+                            <div class="col-md-2 offset-8">
+                                <h4>
+                                    <a [routerLink]="['/product/'+user.pId]">{{user.pId}}</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="row">
+
+                            <div class="col-md-4">
+
+                                <h5>
+                                    Ordered on: {{user.orderDate |date:"longDate"}}
+                                </h5>
+                            </div>
+                            <div class="col-md-2 offset-6">
+
+                                <h4>
+                                    Total Price:</h4>
+                                <h4>{{user.price|currency:"INR":"symbol":"3.1-2"}}</h4>
+
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button class="btn btn-sm btn-primary" (click)="updateOrder(user.orderId)"> remove</button>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <ng-template #noOrder>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-8 offset-3">
+                        <div class="col-md-3 offset-4">
+                            <mat-icon class="text-secondary iconstyle">lock</mat-icon>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-md-7 col-sm-7  offset-4">
+                            <h4>No items to show here</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7 col-sm-7 offset-sm-4 offset-4">
+                            <h6 class="text-secondary">&nbsp;&nbsp;You have not ordered Recently</h6>
+                        </div>
+                    </div>
+<br>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-8 offset-3">
+                            <div class="col-md-6 offset-3">
+                                <button mat-button-raised (click)="shopping()"
+                                class=" btn-danger"> Start Shopping</button>
+                            </div>
+                        </div>
+                    </div>
+            
+                       
+                        <!-- <h6 class="text-secondary">&nbsp;&nbsp;You have not ordered Recently</h6>
+                        <div class="buttonstyle">
+                            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <button mat-button-raised (click)="shopping()"
+                                class=" btn-danger"> Start Shopping</button>
+                        </div> -->
+                    <!-- </div>
+                    <div> -->
+                       
+                    
+                
+
+            </ng-template>
+
+
+        </div>
+    </div>
+    <div class="row orderstyle" *ngIf="!username">
+        <div class="col-md-4 offset-4 text-danger">
+            <h4>
+                Please Login First
+            </h4>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

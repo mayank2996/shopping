@@ -1,0 +1,40 @@
+
+ <mat-toolbar class="bg-tool text-light" color="light">  
+  
+    <a [routerLink]="['/dashboard']" class="col-md-4 text-light">Shopping Cart</a>
+    
+    <div class="ml-auto text-light"  >
+      <span class="ml-auto " *ngIf="username">Welcome {{username}}</span>
+      &nbsp;&nbsp;
+    <a [routerLink]="['/viewOrders']" name="viewOrder" class=" ml-auto text-light" *ngIf="username">view Orders</a>
+    &nbsp;&nbsp;
+    <a [routerLink]="['/wishlist']" name="wishlist" class=" ml-auto text-light" *ngIf="username">Wishlist</a>
+    &nbsp;&nbsp;
+   <a class="ml-auto text-light" *ngIf="isValid; else logout;"  ><a *ngIf="!username; else logout;"  [routerLink]="['/login']">login</a></a>
+   <ng-template #logout><a (click)="onLogout()" name="logout">logout</a></ng-template>
+  </div>
+  
+  
+  </mat-toolbar> 
+ 
+ 
+  <!-- <div class="topnav bg-tool" id="myTopnav">
+   <div class="y"> <a [routerLink]="['/dashboard']" class=" y navbar-brand ">Shopping Cart</a></div>
+    
+   
+   
+    <a class="z" *ngIf="!username; else logout;"  [routerLink]="['/login']">login</a>
+   <ng-template #logout><a (click)="onLogout()" class="z" name="logout">logout</a></ng-template>
+   <a [routerLink]="['/viewOrders']" name="viewOrder" class=" ml-auto z " *ngIf="username">view Orders</a>
+   <a [routerLink]="['/wishlist']" name="wishlist" class=" ml-auto z" *ngIf="username">Wishlist</a>
+   <span class="ml-auto" *ngIf="username">Welcome {{username}}</span>
+    <a href="javascript:void(0);" *ngIf="username" class="icon " (click)="myFunction()" >
+      <i class="fa fa-bars"></i>
+    </a>
+  </div> -->
+  
+  
+
+ 
+
+<router-outlet  ></router-outlet>

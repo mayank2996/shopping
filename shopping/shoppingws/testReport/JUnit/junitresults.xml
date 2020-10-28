@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="4" time="0.01">
+ <testsuite name="Testing Validator" timestamp="2020-04-20T12:45:38" hostname="localhost" time="0.009" errors="0" tests="2" skipped="0" disabled="0" failures="0">
+  <testcase classname="Testing Validator" name="validatepincode: correct Input" time="0.005" />
+  <testcase classname="Testing Validator" name="validatePassword: incorrect Input" time="0.001" />
+ </testsuite>
+ <testsuite name="Testing Validator" timestamp="2020-04-20T12:45:38" hostname="localhost" time="0.001" errors="0" tests="2" skipped="0" disabled="0" failures="0">
+  <testcase classname="Testing Validator" name="validateName: incorrect Input" time="0.001" />
+  <testcase classname="Testing Validator" name="validateName: correct Input" time="0" />
+ </testsuite>
+</testsuites>

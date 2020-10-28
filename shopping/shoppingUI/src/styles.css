@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.order-success{
+    background-color: green;
+}
+.notify{
+    background-color: aqua;
+    color: indigo;
+}
+body{
+     background-image:url("./assets/images/background.png");
+    
+      /* background-color:rgb(236, 240, 229); */
+  /* height:600%; */ 
+    /* background-repeat: no-repeat; */
+ } 

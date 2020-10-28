@@ -1,0 +1,65 @@
+
+
+<div class="row  container " *ngIf="!user && !re">
+<div class=" col-md-6 offset-4 ">
+  <div class="card"  style="margin-top: 40px;">
+    <div class="card-title text-center"><h2>Login</h2></div>
+    <div class="card-body">
+    <form [formGroup]="userLogin" (ngSubmit)="submit()">
+    <mat-form-field class="full-width" appearence="legacy">
+        
+      <input matInput placeholder="Username" name="userName" formControlName="username" >
+      <mat-error *ngIf="userLogin.controls.username.invalid">Invalid Username</mat-error>
+    </mat-form-field>
+
+<div >
+    <mat-form-field class="full-width formstyle" >
+      <input type="password" name="password" matInput placeholder="Password"  formControlName="password">
+      <mat-error *ngIf="userLogin.controls.password.invalid">Invalid Password</mat-error>
+    </mat-form-field>
+  <button type="submit" name="submit" (click)="submit(userLogin)" class="btn btn-block btn-primary" [disabled]="userLogin.invalid" style="margin-top: 20px;">Login</button>
+<div class="text-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+<button type="submit" name="register" (click)="register($event)" class="btn btn-block btn-primary"  style="margin-top: 20px;">Register</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div *ngIf="re">
+<router-outlet></router-outlet>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

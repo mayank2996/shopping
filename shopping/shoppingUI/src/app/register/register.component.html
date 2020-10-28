@@ -1,0 +1,58 @@
+<div class="row" *ngIf="!successmessage">
+    <div class="col-md-4 offset-4">
+   <div class="card" style="margin-top: 40px;">
+       <div class="card-title text-center"><h2>Register</h2></div>
+       <div class="card-body">
+
+           <form [formGroup]="userRegister" (ngSubmit)="register()">
+
+
+            <div >
+                <mat-form-field class="full-width " >
+                  <input type="text" name="name" matInput placeholder="Name"  formControlName="name">
+                  <mat-error *ngIf="userRegister.controls.name.invalid">Enater valid name</mat-error>
+                </mat-form-field>
+                
+               </div>
+
+
+               <mat-form-field class="full-width" appearence="legacy">
+                <input matInput placeholder="Username" name="username" formControlName="username" >
+                <mat-error *ngIf="userRegister.controls.username.invalid">Invalid Username</mat-error>
+               </mat-form-field>
+
+
+               <div >
+                <mat-form-field class="full-width formstyle" >
+                  <input type="number" name="contact" matInput placeholder="contact number"  formControlName="contactno">
+                  <mat-error *ngIf="userRegister.controls.contactno.invalid">Invalid Contact Number</mat-error>
+                </mat-form-field>
+                
+               </div>
+
+
+               <div >
+                <mat-form-field class="full-width formstyle" >
+                  <input type="password" name="password" matInput placeholder="Password"  formControlName="password">
+                  <mat-error *ngIf="userRegister.controls.password.invalid">Invalid Password</mat-error>
+                </mat-form-field>
+                
+               </div>
+               
+            <button type="submit" name="Register" class="btn btn-block btn-primary marg" >Register</button>
+           
+           <div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>
+        </form>
+       </div>
+   </div>
+    </div>
+    
+</div>
+<div class="row" *ngIf="successmessage" style="margin-top: 40px;">
+  <div class="col-md-4 offset-4">
+<div class="text-success">
+  <h4>Thank you for registering</h4>
+  <button type="submit" name="login" class="btn btn-block btn-primary" (click)="login()">Login</button>
+</div>
+  </div>
+</div>
